@@ -3,7 +3,17 @@ name: Daily Event Wisher
 on:
   schedule:
     - cron: '28 18 * * *'
-
+    
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Run in debug mode?'
+        required: false
+        default: 'false'
+      test_email:
+        description: 'Test email address (optional)'
+        required: false
+        default: ''
 jobs:
   run-script:
     runs-on: ubuntu-latest
