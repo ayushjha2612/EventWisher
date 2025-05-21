@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       EMAIL_USER: ${{ secrets.EMAIL_USER }}
-      EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
+      EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
 
     steps:
       - name: Checkout repo
