@@ -63,8 +63,11 @@ for _, row in df.iterrows():
         May this year bring you new adventures and cherished memories.
         """
         print(f"Sending email to {name} ({email})...")
+        if not EMAIL_USER or not EMAIL_PASS:
+            raise ValueError("Missing email credentials in environment variables")
+
         try:
-            yag = yagmail.SMTP(EMAIL_USER, EMAIL_PASS)
+            yag = yagmail.SMTP(user=EMAIL_USER, password=EMAIL_PASS)
             yag.send(to=email, subject=subject, contents=body)
             print(f"Email sent to {name} ({email})")
         except Exception as e:
