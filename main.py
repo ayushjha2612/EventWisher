@@ -62,6 +62,7 @@ for _, row in df.iterrows():
         Wishing you a fantastic birthday filled with joy, laughter, and celebration! 🎂🎈
         May this year bring you new adventures and cherished memories.
         """
+        print(f"Sending email to {name} ({email})...")
         try:
             yag = yagmail.SMTP(EMAIL_USER, EMAIL_PASS)
             yag.send(to=email, subject=subject, contents=body)
