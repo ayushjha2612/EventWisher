@@ -2,7 +2,7 @@ name: Daily Event Wisher
 
 on:
   schedule:
-    - cron: '28 18 * * *'
+    - cron: '28 19 * * *'
     
   workflow_dispatch:
     inputs:
@@ -17,6 +17,9 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
+    env:
+      EMAIL_USER: ${{ secrets.EMAIL_USER }}
+      EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
 
     steps:
       - name: Checkout repo
