@@ -3,13 +3,13 @@ import pandas as pd
 import datetime
 import yagmail
 import os
-import time
 from google.oauth2.service_account import Credentials
+from zoneinfo import ZoneInfo
 
-
+IST = ZoneInfo("Asia/Kolkata")
 def calculate_age(birth_date_str: str) -> int:
     birth_date = datetime.datetime.strptime(birth_date_str, "%d-%m-%Y")
-    today = datetime.datetime.today()
+    today = datetime.datetime.now(IST)
     return format_number_with_suffix(today.year - birth_date.year)
 
 
@@ -22,7 +22,7 @@ def format_number_with_suffix(n: int) -> str:
 
 
 # --- Optional: sleep until midnight ---
-now = datetime.datetime.now()
+now = datetime.datetime.now(IST)
 target = now.replace(hour=0, minute=0, second=0, microsecond=0) + datetime.timedelta(days=1)
 # target = now.replace(hour=21, minute=29, second=00, microsecond=0)
 
@@ -46,7 +46,7 @@ data = sheet.get_all_records()
 df = pd.DataFrame(data)
 print(df)
 
-today = datetime.datetime.now().strftime("%m-%d")
+today = datetime.datetime.now(IST).strftime("%m-%d")
 
 for _, row in df.iterrows():
     birthday = datetime.datetime.strptime(row["date"], "%d-%m-%Y").strftime("%m-%d")
