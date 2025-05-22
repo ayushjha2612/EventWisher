@@ -10,7 +10,7 @@ import logging
 import random
 
 logging.basicConfig(
-    level=logging.INFO,  # Change to logging.DEBUG if you want more detail
+    level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
@@ -67,6 +67,7 @@ sheet = client.open("Events").sheet1
 data = sheet.get_all_records()
 df = pd.DataFrame(data)
 today = datetime.datetime.now(IST).strftime("%m-%d")
+# Message bodies
 bodies = [
     """Hi {name},
 
@@ -96,7 +97,7 @@ Have a wonderful celebration! 🎈🎁
     """Hi {name},
 
 Happy Birthday to you! 🎊🎂
-May your day be filled with happiness, your year with purpose, and your heart with love. 💫
+May your day be filled with happiness, your year with purpose, and your heart with love. ❤️
 """,
     """Hi {name},
 
@@ -133,3 +134,4 @@ for _, row in df.iterrows():
         except Exception as e:
             logging.error(f"Failed to send to {name}: {e}")
             raise
+logging.info("Script completed successfully.")
