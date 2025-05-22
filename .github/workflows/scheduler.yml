@@ -40,7 +40,7 @@ jobs:
         run: |
             echo "${{secrets.GOOGLE_SERVICE_KEY }}" | base64 --decode > service_account.json
 
-      - name: Run the script with logging
+      - name: Run the script
         run: |
           source .venv/bin/activate
           python main.py
