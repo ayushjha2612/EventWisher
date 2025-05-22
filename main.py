@@ -52,7 +52,7 @@ target = now.replace(hour=0, minute=0, second=0, microsecond=0) + datetime.timed
 )
 sleep_time = (target - now).total_seconds()
 logging.info(f"Sleeping for {int(sleep_time)} seconds until 12:00 AM...")
-# time.sleep(sleep_time)
+time.sleep(sleep_time)
 
 
 SCOPES = [
