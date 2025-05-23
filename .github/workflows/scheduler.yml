@@ -2,7 +2,7 @@ name: Daily Event Wisher
 
 on:
   schedule:
-    - cron: '29 18 * * *'
+    - cron: '30 17 * * *'
     
   workflow_dispatch:
     inputs:
