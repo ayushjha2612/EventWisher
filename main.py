@@ -14,7 +14,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-
+SLEEP_TIME = 3600
 IST = ZoneInfo("Asia/Kolkata")
 EMAIL_USER = os.getenv("EMAIL_USER")
 EMAIL_PASS = os.getenv("EMAIL_PASS")
@@ -51,8 +51,9 @@ target = now.replace(hour=0, minute=0, second=0, microsecond=0) + datetime.timed
     days=1
 )
 sleep_time = (target - now).total_seconds()
-logging.info(f"Sleeping for {int(sleep_time)} seconds until 12:00 AM...")
-time.sleep(sleep_time)
+logging.info(f"Sleep time is {int(sleep_time)} seconds until 12:00 AM...")
+if sleep_time <= 3600:
+    time.sleep(sleep_time)
 
 
 SCOPES = [
