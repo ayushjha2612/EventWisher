@@ -14,7 +14,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-SLEEP_TIME = 3600
+SLEEP_TIME_LIMIT = 3600
 IST = ZoneInfo("Asia/Kolkata")
 EMAIL_USER = os.getenv("EMAIL_USER")
 EMAIL_PASS = os.getenv("EMAIL_PASS")
@@ -51,8 +51,8 @@ target = now.replace(hour=0, minute=0, second=0, microsecond=0) + datetime.timed
     days=1
 )
 sleep_time = (target - now).total_seconds()
-logging.info(f"Sleep time is {int(sleep_time)} seconds until 12:00 AM...")
-if sleep_time <= 3600:
+if sleep_time <= SLEEP_TIME_LIMIT:
+    logging.info(f"Sleeping for {int(sleep_time)} seconds until 12:00 AM...")
     time.sleep(sleep_time)
 
 
@@ -116,7 +116,7 @@ Wishing you joy that lasts the whole year, not just your birthday! 🎈🥳
 Have an awesome celebration and a fabulous year ahead! 🎁🍰
 """,
 ]
-
+logging.info("Starting to process events...")
 for _, row in df.iterrows():
     event_date = datetime.datetime.strptime(row["date"], "%d-%m-%Y").strftime("%m-%d")
     age_str = row["date"]
