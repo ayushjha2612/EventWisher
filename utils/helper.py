@@ -7,6 +7,7 @@ from google.oauth2.service_account import Credentials
 import gspread
 import pandas as pd
 
+
 def validate_env():
     # Ensure the environment variables are set
     if not EMAIL_USER or not EMAIL_PASS:
@@ -40,10 +41,11 @@ def sleep_till_midnight():
     target = now.replace(
         hour=0, minute=0, second=0, microsecond=0
     ) + datetime.timedelta(days=1)
-    sleep_time = (target - now).total_seconds()
+    sleep_time = (target - now).total_seconds() - 1
     if sleep_time <= SLEEP_TIME_LIMIT:
         logging.info(f"Sleeping for {int(sleep_time)} seconds until 12:00 AM...")
         time.sleep(sleep_time)
+
 
 def get_events_sheet_df():
     creds = Credentials.from_service_account_file("service_account.json", scopes=SCOPES)
