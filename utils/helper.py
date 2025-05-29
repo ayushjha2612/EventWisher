@@ -54,3 +54,16 @@ def get_events_sheet_df():
 
     data = sheet.get_all_records()
     return pd.DataFrame(data)
+
+
+def get_day():
+    now = datetime.datetime.now(IST)
+    target = now.replace(
+        hour=0, minute=0, second=0, microsecond=0
+    ) + datetime.timedelta(days=1)
+    remaining_time = (target - now).total_seconds()
+    wait_days = 0 if remaining_time > SLEEP_TIME_LIMIT else 1
+    target_day = (datetime.datetime.now(IST) + datetime.timedelta(days=wait_days)).strftime(
+        "%m-%d"
+    )
+    return target_day

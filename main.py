@@ -1,5 +1,5 @@
 import logging
-from utils.helper import validate_env, sleep_till_midnight, get_events_sheet_df
+from utils.helper import validate_env, get_events_sheet_df, get_day
 from modules.event_wisher import event_wisher
 
 logging.basicConfig(
@@ -10,8 +10,8 @@ logging.basicConfig(
 
 if __name__ == "__main__":
     validate_env()
-    sleep_till_midnight()
     df = get_events_sheet_df()
     logging.info("Starting to process events...")
-    event_wisher(df)
+    target_day = get_day()
+    event_wisher(df, target_day)
     logging.info("Script completed successfully.")
