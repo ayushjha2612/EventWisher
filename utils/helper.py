@@ -41,7 +41,7 @@ def sleep_till_midnight():
     target = now.replace(
         hour=0, minute=0, second=0, microsecond=0
     ) + datetime.timedelta(days=1)
-    sleep_time = (target - now).total_seconds() - 1
+    sleep_time = (target - now).total_seconds()
     if sleep_time <= SLEEP_TIME_LIMIT:
         logging.info(f"Sleeping for {int(sleep_time)} seconds until 12:00 AM...")
         time.sleep(sleep_time)
